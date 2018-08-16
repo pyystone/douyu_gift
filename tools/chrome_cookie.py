@@ -12,5 +12,5 @@ def get_cookie_from_chrome(host: '.oschina.net'):
         cu = conn.cursor()
         cookies = {name: CryptUnprotectData(
             encrypted_value)[1].decode() for host_key, name, encrypted_value in cu.execute(sql).fetchall()}
-        print(cookies)
+        # print(cookies)
         return cookies

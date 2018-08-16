@@ -18,13 +18,13 @@ def get_douyu_http_data(url, referer= ""):
     return http_data
 
 
-# dy:      dy_did
-# prop_id: 268  礼物id 粉丝荧光棒
-# num: 1        数量
-# sid: 10461477 acf_uid
-# did: 5748     主播的uid
-# did 获取地址：https://www.douyu.com/ztCache/WebM/room/196 ,\"owner_uid\":5748,\
-# rid: 196      房间id
+# dy:               dy_did
+# prop_id: 268      礼物id 粉丝荧光棒
+# num: 1            数量
+# sid: xxx          acf_uid
+# did: xx           主播的uid
+# did               获取地址：https://www.douyu.com/ztCache/WebM/room/196 ,\"owner_uid\":5748,\
+# rid: xx           房间id
 def send_gift(dy,sid,did,rid):
     data = get_douyu_http_data("https://www.douyu.com/member/prop/send", "https://www.douyu.com/%d".format(rid))
     data.data = {

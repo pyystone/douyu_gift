@@ -77,7 +77,7 @@ def http_get_json(http_data):
 
 
 def http_get(http_data):
-    MyLog.logcat("Http Get:{0}".format(http_data.url))
+    # MyLog.logcat("Http Get:{0}".format(http_data.url))
 
     state = HttpState()
 
