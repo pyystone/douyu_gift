@@ -8,4 +8,4 @@ def init_app():
 if __name__ == "__main__":
     init_app()
     start()
-    os.system("pause")
+    input("Press <enter> to END")

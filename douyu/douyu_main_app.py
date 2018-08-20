@@ -38,4 +38,3 @@ def start():
 
     print("\n礼物赠送结束\n当前关注信息\n")
     update_room_list()
-    print("\n END")
