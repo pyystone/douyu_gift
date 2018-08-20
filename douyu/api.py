@@ -59,13 +59,12 @@ def query_did(num):
 # rid: 196
 # 先进入一次房间，这样才可以领取到 粉丝棒
 def query_gift(rid):
-    get_douyu_http_data("https://www.douyu.com/{0}".format(rid))
+    http_get(HttpData("https://www.douyu.com/%d".format(rid)))
 
     url = "https://www.douyu.com/member/prop/query"
     data = get_douyu_http_data(url, "https://www.douyu.com/%d".format(rid))
     data.data = {'rid': rid}
     result = http_post(data)
-    print(result)
     data = json.loads(result.msg)
     data = data['data']['list']
     for item in data:
@@ -103,7 +102,7 @@ def update_room_list():
             room_id_list[room_id] = room_data
 
     if did_list_file_change:
-        with open('room_id_list.txt', 'w') as f:
+        with open(room_data_list_file_path, 'w') as f:
             f.write(json.dumps(room_id_list))
 
 
