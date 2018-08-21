@@ -1,5 +1,3 @@
-from bs4 import BeautifulSoup
-
 from douyu.api import *
 import json
 import os
@@ -30,8 +28,11 @@ def start():
     while i < gift_count:
         for rid in room_id_list:
             if i < gift_count:
-                send_gift(dy_did, sid, room_id_list[rid]["did"], rid)
-                print("{0: <20}: 粉丝荧光棒赠送成功".format(room_id_list[rid]["name"]))
+                result = send_gift(dy_did, sid, room_id_list[rid]["did"], rid)
+                if result:
+                    print("{0: <10}: 粉丝荧光棒赠送成功".format(room_id_list[rid]["name"]))
+                else:
+                    print("{0: <10}: 粉丝荧光棒赠送失败".format(room_id_list[rid]["name"]))
                 i = i + 1
             else:
                 break

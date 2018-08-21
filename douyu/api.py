@@ -41,7 +41,7 @@ def send_gift(dy, sid, did, rid):
         'rid': rid,
     }
     result = http_post(data)
-    print(result)
+    return result.code == 0
 
 
 def query_did(num):
@@ -88,14 +88,17 @@ def update_room_list():
     # 格式化输出查看数据
     # print(soup.prettify())
 
-    print("{0: <8}|{1: >10}|{2: >7}|{3: >10} | {4}".format("Id", "Rank", "Lv", "Intimacy", "Name"))
+    print("{0: <8}|{1: >10}|{2: >7}|{3: >10}|{4: >7} | {5}".
+          format("Id", "Rank", "Lv", "Intimacy", "TodayIntimacy", "Name"))
     for item in soup.find_all(has_room_attr):
         room_id = item.attrs['data-fans-room']
         room_lv = item.attrs['data-fans-level']
         room_rank = item.attrs['data-fans-rank']
         room_intimacy = item.attrs['data-fans-intimacy']
         room_name = item.contents[3].text.replace("\n", "")
-        print("{0: <8}|{1: >10}|{2: >7}|{3: >10} | {4}".format(room_id, room_rank, room_lv, room_intimacy, room_name))
+        today_intimacy = item.contents[7].text.replace("\n", "")
+        print("{0: <8}|{1: >10}|{2: >7}|{3: >10}|{4: >7} | {5}".
+              format(room_id, room_rank, room_lv, room_intimacy, today_intimacy, room_name))
         if room_id_list.get(room_id, -1) == -1:
             did_list_file_change = True
             room_data = {"did": query_did(room_id), "name": room_name}
