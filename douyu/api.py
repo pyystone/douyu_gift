@@ -71,9 +71,8 @@ def query_did(num):
 # Method: POST
 # Form Data:
 # rid: 196
-# 先进入一次房间，这样才可以领取到 粉丝棒
+
 def query_gift(rid):
-    http_get(HttpData("https://www.douyu.com/%d".format(rid)))
 
     url = "https://www.douyu.com/member/prop/query"
     data = get_douyu_http_data(url, "https://www.douyu.com/%d".format(rid))
