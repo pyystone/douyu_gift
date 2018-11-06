@@ -44,6 +44,20 @@ def send_gift(dy, sid, did, rid):
     return result.code == 0
 
 
+def send_temp_gift(dy, sid, did, rid, gift_id, num):
+    data = get_douyu_http_data("https://www.douyu.com/member/prop/send", "https://www.douyu.com/%d".format(rid))
+    data.data = {
+        'dy': dy,
+        'prop_id': gift_id,
+        'num': num,
+        'sid': sid,
+        'did': did,
+        'rid': rid,
+    }
+    result = http_post(data)
+    return result.code == 0
+
+
 def query_did(num):
     url = "https://www.douyu.com/ztCache/WebM/room/{0}".format(num)
     result = http_get_json(HttpData(url))

@@ -55,7 +55,7 @@ def http_post(http_data):
     state = HttpState()
     try:
         r = requests.post(http_data.url, cookies=http_data.cookies, headers=http_data.headers, data=http_data.data, proxies=http_data.proxies, timeout=10)
-        # MyLog.logcat(r.text)
+        MyLog.logcat(r.text)
         state.set_code(0)
         state.set_msg(r.text)
     except requests.HTTPError as e:

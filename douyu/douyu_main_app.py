@@ -5,6 +5,21 @@ import os
 room_data_list_file_path = "data_list.txt"
 
 
+# 用于临时送指定礼物的代码
+# 原本设计用于web没提供批量送礼物而写的脚本
+# 可惜服务端有做检查，结果无论填多少最后送出的数量只有1个，所以这块代码暂时弃用
+def temp_start():
+    with open(room_data_list_file_path, 'r') as f:
+        data = f.read()
+        room_id_list = json.loads(data)
+
+    cookie_jar = get_cookie_from_chrome("www.douyu.com")
+    dy_did = cookie_jar['acf_did']
+    sid = cookie_jar['acf_uid']
+
+    send_temp_gift(dy_did, sid, room_id_list["196"]["did"], 196, 4, 47)
+
+
 def start():
     print("更新关注信息")
     update_room_list()
