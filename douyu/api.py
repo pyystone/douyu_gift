@@ -31,7 +31,7 @@ def get_douyu_http_data(url, referer= ""):
 # did               获取地址：https://www.douyu.com/ztCache/WebM/room/196 ,\"owner_uid\":5748,\
 # rid: xx           房间id
 def send_gift(dy, sid, did, rid):
-    data = get_douyu_http_data("https://www.douyu.com/member/prop/send", "https://www.douyu.com/%d".format(rid))
+    data = get_douyu_http_data("https://www.douyu.com/member/prop/send", "https://www.douyu.com/{}".format(rid))
     data.data = {
         'dy': dy,
         'prop_id': 268,
