@@ -75,7 +75,7 @@ def query_did(num):
 def query_gift(rid):
 
     url = "https://www.douyu.com/member/prop/query"
-    data = get_douyu_http_data(url, "https://www.douyu.com/%d".format(rid))
+    data = get_douyu_http_data(url, "https://www.douyu.com/{0}".format(rid))
     data.data = {'rid': rid}
     result = http_post(data)
     data = json.loads(result.msg)

@@ -5,7 +5,7 @@ import os
 
 
 def init_app():
-    MyLog.set_status(1)
+    MyLog.set_status(0)
 
 
 if __name__ == "__main__":
