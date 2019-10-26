@@ -30,22 +30,8 @@ def get_douyu_http_data(url, referer= ""):
 # did: xx           主播的uid
 # did               获取地址：https://www.douyu.com/ztCache/WebM/room/196 ,\"owner_uid\":5748,\
 # rid: xx           房间id
-def send_gift(dy, sid, did, rid):
+def send_dy_gift(dy, sid, did, rid, gift_id: 268, num: 1):
     data = get_douyu_http_data("https://www.douyu.com/member/prop/send", "https://www.douyu.com/{}".format(rid))
-    data.data = {
-        'dy': dy,
-        'prop_id': 268,
-        'num': 1,
-        'sid': sid,
-        'did': did,
-        'rid': rid,
-    }
-    result = http_post(data)
-    return result.code == 0
-
-
-def send_temp_gift(dy, sid, did, rid, gift_id, num):
-    data = get_douyu_http_data("https://www.douyu.com/member/prop/send", "https://www.douyu.com/%d".format(rid))
     data.data = {
         'dy': dy,
         'prop_id': gift_id,
@@ -56,7 +42,6 @@ def send_temp_gift(dy, sid, did, rid, gift_id, num):
     }
     result = http_post(data)
     return result.code == 0
-
 
 def query_did(num):
     url = "https://www.douyu.com/ztCache/WebM/room/{0}".format(num)
@@ -114,7 +99,7 @@ def update_room_list():
               format(room_id, room_rank, room_lv, room_intimacy, today_intimacy, room_name))
         if room_id_list.get(room_id, -1) == -1:
             did_list_file_change = True
-            room_data = {"did": query_did(room_id), "name": room_name}
+            room_data = {"did": query_did(room_id), "name": room_name, "intimacy": room_intimacy}
             room_id_list[room_id] = room_data
 
     if did_list_file_change:
