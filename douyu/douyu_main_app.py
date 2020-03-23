@@ -1,6 +1,7 @@
 from douyu.api import *
 import json
 import os
+import time
 
 room_data_list_file_path = "data_list.txt"
 default_gift_id = 268
@@ -51,6 +52,7 @@ def start(start_type: 1):
 
     if start_type == 2 and gift_num != 0:
         for rid in room_id_list:
+            # time.sleep(200)
             intimacy = float(room_id_list[rid]["intimacy"].replace(',',''))
             if intimacy > max_intimacy:
                 temp_rid = rid
@@ -62,6 +64,7 @@ def start(start_type: 1):
                       , room_id_list[temp_rid]["name"])
     if start_type == 1 and gift_count > 0:
         for rid in room_id_list:
+            # time.sleep(200)
             if send_count < gift_count:
                 send_gift(dy_did, sid, room_id_list[rid]["did"], rid, default_gift_id, 1, room_id_list[rid]["name"])
                 send_count = send_count + 1
